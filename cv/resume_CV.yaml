@@ -1,0 +1,147 @@
+cv:
+  name: Yuefeng Hu
+  location: Tokyo
+  email: huyuefeng99@gmail.com
+  phone: tel:+81-90-5000-2086
+  social_networks:
+    - network: LinkedIn
+      username: yuefeng-hu
+    - network: GitHub
+      username: IceFox99
+  sections:
+    education:
+      - institution: The University of Tokyo
+        area: Computer Science
+        degree: MS
+        start_date: 2022-10
+        end_date: 2024-09
+        highlights: 
+          - 'GPA: 4.0/4.0'
+          - 'Published a conference paper at [SLE ''24](https://conf.researchr.org/home/sle-2024), and open sourced all source codes and artifacts'
+      - institution: Beijing University of Posts and Telecommunications
+        area: Software Engineering
+        degree: BS
+        start_date: 2017-09
+        end_date: 2021-07
+        highlights:
+          - 'GPA: 3.3/4.0'
+          - '**Coursework**: Data Structure and Algorithm, Internet Protocols, Advanced Network Programming, Database Management System, Software Engineering, Data Warehousing and Data Mining'
+    experience:
+      - company: ZTE
+        position: Software Engineer Intern
+        location: Haidian, Beijing
+        start_date: 2021-09
+        end_date: 2021-11
+        highlights:
+          - Developed a lightweight, real-time network traffic monitoring and classification tool on Linux
+          - Designed and built a website with pandoc and chart.js for internal use, and integrated the tool to display the real-time network traffic
+          - Automated the deployment of the web server using shell scripts
+    publications:
+      - title: "Bugfox: A Trace-Based Analyzer for Localizing the Cause of Software Regression in JavaScript"
+        authors:
+          - '***Yuefeng Hu***'
+          - Hiromu Ishibe
+          - Feng Dai
+          - Tetsuro Yamazaki
+          - Shigeru Chiba
+        doi: 10.1145/3687997.3695648
+        date: 2024-10
+        journal: "SLE '24"
+    projects:
+      - name: Bugfox
+        date: '[GitHub](https://github.com/IceFox99/Bugfox)'
+        highlights:
+          - Developed an automated trace-based analyzer, Bugfox, to identify the root cause of software regressions in JavaScript applications. The tool uses heuristic strategies based on invocation order and frequency, achieving 83% accuracy on 12 real-world regressions from the BugsJS benchmark. Bugfox effectively diagnoses those regressions with minimal memory overhead and fast performance, solving each regression in under 1 minute.
+          - 'Tools Used: JavaScript, Git, Shell, Node.js'
+      - name: Sand
+        date: '[GitHub](https://github.com/IceFox99/Trashcan/tree/Sand)'
+        highlights:
+          - A programming language written in C++ with a ll(1) parser and a simple interpreter. It supports explicit function inlining, function redefinition, labeled loop, etc. 
+          - 'Tools Used: C++, Makefile'
+    technologies:
+      - label: Languages
+        details: C, C++, Java, JavaScript, Python, Go, SQL, HTML/CSS
+      - label: Technologies
+        details: Node.js, Linux, Make/CMake, Git, Docker, Shell Scripting, Nginx, Scrum Development
+    interests:
+      - label: 'Finderstyle Guitar'
+        details: '[Bilibili@IceFox99](https://space.bilibili.com/15718497)'
+      - label: 'Video Games'
+        details: Dota 2, Soulsborne, Monster Hunter, RPG, RTS, etc.
+      - label: 'Anime'
+        details: Rick and Morty, Fullmetal Alchemist, Cowboy Bebop, Clannad, etc.
+      - label: 'Go (game)'
+        details: Amateur 4 dan
+    
+design:
+  theme: sb2nov
+  font: Latin Modern Serif
+  font_size: 10pt
+  page_size: letterpaper
+  color: '#004f90'
+  disable_external_link_icons: true
+  disable_page_numbering: true
+  page_numbering_style: NAME - Page PAGE_NUMBER of TOTAL_PAGES
+  disable_last_updated_date: true
+  last_updated_date_style: Last updated in TODAY
+  header_font_size: 24 pt
+  text_alignment: justified
+  seperator_between_connections: ''
+  use_icons_for_connections: true
+  margins:
+    page:
+      top: 1.5 cm
+      bottom: 1.5 cm
+      left: 2 cm
+      right: 2 cm
+    section_title:
+      top: 0.3 cm
+      bottom: 0.2 cm
+    entry_area:
+      left_and_right: 0.2 cm
+      vertical_between: 0.2 cm
+      date_and_location_width: 4.5 cm
+    highlights_area:
+      top: 0.10 cm
+      left: 0.4 cm
+      vertical_between_bullet_points: 0.10 cm
+    header:
+      vertical_between_name_and_connections: 0.3 cm
+      bottom: 0.3 cm
+      horizontal_between_connections: 0.5 cm
+
+locale_catalog:
+  phone_number_format: national 
+  date_style: "MONTH_ABBREVIATION YEAR" 
+  abbreviations_for_months:
+    - Jan
+    - Feb
+    - Mar
+    - Apr
+    - May
+    - Jun
+    - Jul
+    - Aug
+    - Sep
+    - Oct
+    - Nov
+    - Dec
+  full_names_of_months:
+    - January
+    - February
+    - March
+    - April
+    - May
+    - June
+    - July
+    - August
+    - September
+    - October
+    - November
+    - December
+  month: month
+  months: months
+  year: year
+  years: years
+  present: present
+  to: to
