@@ -62,7 +62,7 @@ cv:
       - label: Languages
         details: C, C++, Java, JavaScript, Python, Go, SQL, HTML/CSS
       - label: Technologies
-        details: Node.js, Linux, Make/CMake, Git, Docker, Shell Scripting, Nginx, Scrum Development
+        details: Node.js, Spring Boot, PostgreSQL, Make/CMake, Git, Docker, Kubernetes, Linux, Shell Scripting, Nginx, Scrum Development
     interests:
       - label: 'Finderstyle Guitar'
         details: '[Bilibili@IceFox99](https://space.bilibili.com/15718497)'
@@ -91,7 +91,7 @@ design:
   margins:
     page:
       top: 1.5 cm
-      bottom: 1.5 cm
+      bottom: 1 cm
       left: 2 cm
       right: 2 cm
     section_title:
