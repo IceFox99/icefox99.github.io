@@ -36,15 +36,6 @@ cv:
           - Working on feature platform and rule engine development for real-time fraud detection
           - Supporting machine learning systems (UML/SML) and big data pipelines (Spark/Kafka)
           - Contributing to optimizations for scalability and faster fraud decisioning
-      - company: ZTE
-        position: Software Engineer Intern
-        location: Beijing, China
-        start_date: 2021-09
-        end_date: 2021-11
-        highlights:
-          - Built a lightweight Linux tool for real-time network traffic monitoring and classification
-          - Created an internal website with real-time traffic visualization using Pandoc and Chart.js
-          - Automated web server deployment using shell scripts
     publications:
       - title: "Bugfox: A Trace-Based Analyzer for Localizing the Cause of Software Regression in JavaScript"
         authors:
@@ -71,7 +62,7 @@ cv:
       - label: Languages
         details: C, C++, Java, JavaScript, Python, Go, SQL, HTML/CSS
       - label: Technologies
-        details: Node.js, Spring Boot, PostgreSQL, Make/CMake, Git, Docker, Kubernetes, Linux, Shell Scripting, Nginx, Scrum Development
+        details: Node.js, Spring Boot, Kafka, Flink, MySQL, PostgreSQL, Yugabyte, ClickHouse, Redis, Make/CMake, Git/GitHub, Jenkins, Docker, Kubernetes, AWS S3, Grafana, Linux, Shell Scripting, Nginx, Scrum Development
         
 design:
   theme: sb2nov
