@@ -37,6 +37,15 @@ cv:
           - Supporting machine learning systems (UML/SML) and big data pipelines (Spark/Kafka)
           - Contributing to optimizations for scalability and faster fraud decisioning
     publications:
+      - title: "Yet Another Trace-Based Approach for the Cause of Software Regressions in JavaScript and Python"
+        authors:
+          - Feng Dai
+          - '***Yuefeng Hu***'
+          - Tetsuro Yamazaki
+          - Shigeru Chiba
+        doi: 10.1109/QRS65678.2025.00050
+        date: 2025-07
+        journal: "QRS '25"
       - title: "Bugfox: A Trace-Based Analyzer for Localizing the Cause of Software Regression in JavaScript"
         authors:
           - '***Yuefeng Hu***'
