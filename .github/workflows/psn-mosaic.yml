@@ -1,0 +1,29 @@
+name: PSN mosaic
+
+on:
+  schedule:
+    - cron: "0 6 * * *"        # daily at 06:00 UTC
+  workflow_dispatch:            # manual "Run workflow" button
+
+permissions:
+  contents: write
+
+concurrency:
+  group: psn-mosaic
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install playwright
+      - run: python -m playwright install --with-deps chromium
+      - run: python scripts/capture_mosaic.py
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: refresh PSN platinum mosaic"
+          file_pattern: "assets/psn-mosaic.png assets/.mosaic-hash"
