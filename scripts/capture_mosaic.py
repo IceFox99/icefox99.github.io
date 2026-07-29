@@ -29,6 +29,13 @@ OVERRIDES = {
     "showGameTitle": True,                # game title under each icon
     "showFullGameTitle": True,            # full title, never truncated
     "isGameTitleTextBold": True,          # site default: bold game title
+    # text sizes -- all pinned to the site defaults so they can't drift
+    "headerUsernameSize": 18,             # px
+    "headerTrophyNumberSize": 14,         # px
+    "gameTitleTextSize": 4,               # site scale step, not px
+    "platformTextSize": 3,
+    "platRarityTextSize": 3,
+    "platEarnedDateTextSize": 3,
     # header text legibility on the blue background (delete these 3 for black):
     "headerTextColor": "#ffffff",
     "headerUsernameColor": "#ffffff",
@@ -52,6 +59,25 @@ HEADER_TAG_JS = """
 }
 """
 
+# psnplathub self-hosts Geist but its --font-geist-sans var resolves to an empty
+# string, so text falls back to the runner's system font (DejaVu Sans on Linux) and
+# the PNG looks nothing like the site in a desktop browser. Pin the family to the
+# site's intended font and wait for the webfont before exporting -- the @font-face
+# rules are same-origin, so html-to-image can embed them.
+FONT_FAMILY = "Geist"
+FONT_CSS = f'body, body * {{ font-family: "{FONT_FAMILY}", sans-serif !important; }}'
+FONT_LOAD_JS = """
+async (family) => {
+    // Load every weight the mosaic uses, for the glyphs actually on the page, so
+    // all unicode-range subsets are fetched before the capture.
+    const sample = document.body.innerText.slice(0, 20000);
+    await Promise.all(['400', '500', '600', '700'].map(
+        w => document.fonts.load(`${w} 16px "${family}"`, sample).catch(() => null)));
+    await document.fonts.ready;
+    return document.fonts.check(`400 16px "${family}"`);
+}
+"""
+
 
 def get(url):
     req = urllib.request.Request(url, headers={"User-Agent": "psn-mosaic-bot"})
@@ -71,6 +97,7 @@ def signature():
         "level": prof.get("trophyLevel"),
         "settings": OVERRIDES,
         "headerFontWeight": HEADER_FONT_WEIGHT,
+        "fontFamily": FONT_FAMILY,
     }
     return hashlib.sha256(json.dumps(payload, sort_keys=True).encode()).hexdigest()
 
@@ -100,9 +127,12 @@ def main():
         page.reload(wait_until="networkidle")
         page.wait_for_timeout(6000)
 
-        page.add_style_tag(content=HEADER_CSS)
+        page.add_style_tag(content=FONT_CSS + HEADER_CSS)
         if not page.evaluate(HEADER_TAG_JS):
             raise SystemExit("Profile header not found (site may have changed)")
+        if not page.evaluate(FONT_LOAD_JS, FONT_FAMILY):
+            raise SystemExit(f"{FONT_FAMILY} webfont did not load (would fall back to a system font)")
+        page.wait_for_timeout(1500)  # let the reflow from the new metrics settle
 
         btns = page.get_by_role("button")
         idx = next(
