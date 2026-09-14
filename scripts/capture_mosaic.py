@@ -31,14 +31,23 @@ DROP_WATERMARK = True
 # psnplathub client-side settings (injected into localStorage before render).
 OVERRIDES = {
     "headerBackgroundColor": "#0070cc",   # profile header background
+    "mosaicBackgroundColor": "#ffffff",   # tile area background (v2 defaults to dark #070b10)
     "showPlatEarnedDate": True,           # show platinum earned date
     "isAutoLayout": True,                 # auto column count
     "showPlatCount": False,               # hide the "#N" platinum index numbers
+    "showIconBorder": False,              # no tile border (v2 adds a 2px cyan one)
+    "showHeaderPlatHubPoints": False,     # hide the PlatHub Points badge (new in the v2 redesign)
     "platEarnedDateYearOnly": False,      # full date, e.g. "Aug 13, 2025" (not just year)
     "isPlatEarnedDateTextBold": False,    # regular weight, not bold
     "showGameTitle": True,                # game title under each icon
     "showFullGameTitle": True,            # full title, never truncated
     "isGameTitleTextBold": True,          # site default: bold game title
+    # text colours -- v2 defaults are tuned for its dark background and would be
+    # illegible on the white mosaic above (title default is near-white #f2fbff).
+    "gameTitleTextColor": "#000000",
+    "platformTextColor": "#6b7280",
+    "platRarityTextColor": "#6b7280",
+    "platEarnedDateTextColor": "#6b7280",
     # text sizes -- all pinned to the site defaults so they can't drift
     "headerUsernameSize": 18,             # px
     "headerTrophyNumberSize": 14,         # px
@@ -97,14 +106,18 @@ PREPARE_JS = """
     if (!node) return {ok: false, why: 'mosaic element not found'};
     node.setAttribute('data-psn-capture', '1');
 
+    // The watermark is the trailing full-width grid row: a logo <svg> next to the
+    // wordmark. The v2 redesign rebranded "psnplathub.com" to "PlatHub" and split
+    // the text across nested spans ("<span>Plat</span>Hub"), so match the wrapper's
+    // whitespace-stripped text and require the logo, rather than one exact text node.
     let watermark = 0;
     if (dropWatermark) {
-        Array.from(node.querySelectorAll('span')).forEach(s => {
-            if (/^psnplathub\\.com$/i.test((s.textContent || '').trim())) {
-                (s.parentElement || s).style.display = 'none';
-                watermark++;
-            }
-        });
+        const isMark = e => /^(plathub|psnplathub\\.com)$/i
+            .test((e.textContent || '').replace(/\\s+/g, '')) && e.querySelector('svg');
+        const hits = Array.from(node.querySelectorAll('div, span')).filter(isMark);
+        // keep only the outermost matches -- their descendants match too
+        hits.filter(e => !hits.some(o => o !== e && o.contains(e)))
+            .forEach(e => { e.style.display = 'none'; watermark++; });
     }
 
     // Icons are lazy-loaded; force them all in so nothing captures blank.
