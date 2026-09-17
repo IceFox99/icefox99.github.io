@@ -8,23 +8,6 @@ cv:
     - network: GitHub
       username: IceFox99
   sections:
-    education:
-      - institution: The University of Tokyo
-        area: Computer Science
-        degree: MS
-        start_date: 2022-10
-        end_date: 2024-09
-        highlights: 
-          - 'GPA: 4.0/4.0'
-          - 'Published a conference paper at [SLE ''24](https://conf.researchr.org/home/sle-2024), and open sourced all source codes and artifacts'
-      - institution: Beijing University of Posts and Telecommunications
-        area: Software Engineering
-        degree: BS
-        start_date: 2017-09
-        end_date: 2021-07
-        highlights:
-          - 'GPA: 3.3/4.0'
-          - '**Coursework**: Data Structure and Algorithm, Internet Protocols, Advanced Network Programming, Database Management System, Software Engineering, Data Warehousing and Data Mining'
     experience:
       - company: DataVisor
         position: Software Engineer
@@ -32,9 +15,29 @@ cv:
         start_date: 2025-02
         end_date: present
         highlights:
-          - Working on feature platform and rule engine development for real-time fraud detection
-          - Supporting machine learning systems (UML/SML) and big data pipelines (Spark/Kafka)
-          - Contributing to optimizations for scalability and faster fraud decisioning
+          - Develop features for and maintain the feature platform and rule engine behind a real-time fraud detection product — Java/Spring over Kafka, Flink, ClickHouse and Redis — running under a 10 ms p99 decisioning budget on several TB of transaction data per day
+          - Carry production on-call — alert triage, traffic failover, Kubernetes cluster and pod debugging; diagnose live JVM services under load with Arthas, jcmd, async-profiler and thread/heap dump analysis
+          - Built a fully local deployment and test environment by removing remote AWS S3 and Flink dependencies, letting engineers reproduce and debug the entire stack on one machine with Docker and local services
+    projects:
+      - name: Bugfox
+        date: '[GitHub](https://github.com/IceFox99/Bugfox)'
+        highlights:
+          - Automated trace-based root-cause analyzer for software regressions — no manual bisection, resolves each case in under 1 minute, 83% localization accuracy on 12 real-world regressions from the BugsJS benchmark
+          - 'Tools Used: JavaScript, Node.js, Shell'
+      - name: Sand
+        date: '[GitHub](https://github.com/IceFox99/Trashcan/tree/Sand)'
+        highlights:
+          - Programming language implemented from scratch in C++ — hand-written LL(1) parser, interpreter and runtime, supporting explicit function inlining, function redefinition and labeled loops
+          - 'Tools Used: C++, Make/CMake'
+    technologies:
+      - label: Languages
+        details: Java, C++, C, Python, SQL, JavaScript
+      - label: Backend & Infrastructure
+        details: Spring, Linux, Shell Scripting, Docker, Kubernetes, AWS S3, Make/CMake, Git
+      - label: Data & Streaming
+        details: Kafka, Flink, Redis, ClickHouse, Doris, Yugabyte, MySQL
+      - label: Observability & Debugging
+        details: Grafana, Arthas, jcmd, async-profiler, thread/heap dump analysis
     publications:
       - title: "Yet Another Trace-Based Approach for the Cause of Software Regressions in JavaScript and Python"
         authors:
@@ -55,23 +58,21 @@ cv:
         doi: 10.1145/3687997.3695648
         date: 2024-10
         journal: "SLE '24"
-    projects:
-      - name: Bugfox
-        date: '[GitHub](https://github.com/IceFox99/Bugfox)'
+    education:
+      - institution: The University of Tokyo
+        area: Computer Science
+        degree: MS
+        start_date: 2022-10
+        end_date: 2024-09
         highlights:
-          - Developed an automated trace-based analyzer, Bugfox, to identify the root cause of software regressions in JavaScript applications. The tool uses heuristic strategies based on invocation order and frequency, achieving 83% accuracy on 12 real-world regressions from the BugsJS benchmark. Bugfox effectively diagnoses those regressions with minimal memory overhead and fast performance, solving each regression in under 1 minute.
-          - 'Tools Used: JavaScript, Git, Shell, Node.js'
-      - name: Sand
-        date: '[GitHub](https://github.com/IceFox99/Trashcan/tree/Sand)'
-        highlights:
-          - A programming language written in C++ with a ll(1) parser and a simple interpreter. It supports explicit function inlining, function redefinition, labeled loop, etc. 
-          - 'Tools Used: C++, Makefile'
-    technologies:
-      - label: Languages
-        details: C, C++, Java, JavaScript, Python, Go, SQL, HTML/CSS
-      - label: Technologies
-        details: Node.js, Spring Boot, Kafka, Flink, MySQL, PostgreSQL, Yugabyte, ClickHouse, Redis, Make/CMake, Git/GitHub, Jenkins, Docker, Kubernetes, AWS S3, Grafana, Linux, Shell Scripting, Nginx, Scrum Development
-        
+          - 'GPA: 4.0/4.0'
+          - 'First-author paper at [SLE ''24](https://conf.researchr.org/home/sle-2024); all source code and artifacts open sourced'
+      - institution: Beijing University of Posts and Telecommunications
+        area: Software Engineering
+        degree: BS
+        start_date: 2017-09
+        end_date: 2021-07
+
 design:
   theme: sb2nov
   font: Latin Modern Serif
@@ -110,8 +111,8 @@ design:
       horizontal_between_connections: 0.5 cm
 
 locale_catalog:
-  phone_number_format: national 
-  date_style: "MONTH_ABBREVIATION YEAR" 
+  phone_number_format: national
+  date_style: "MONTH_ABBREVIATION YEAR"
   abbreviations_for_months:
     - Jan
     - Feb
